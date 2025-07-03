@@ -28,7 +28,7 @@ local places = require(game:GetService("ReplicatedStorage").Modules.Global.Map_L
 local dummies = {
     "Dummy (Infinite Hp)",
     "Dummy (10000 Hp)",
-    "Dummy (5000 Hp),"
+    "Dummy (5000 Hp)"
 }
 
 
@@ -1323,28 +1323,29 @@ Tabs["Misc"]:AddButton({
 
 Tabs['Misc']:AddButton({
     Title = 'Auto Enmu Clash',
-    Description = 'This Gets u the title of "Button Masher"'
+    Description = 'This Gets u the title of "Button Masher"',
     Callback = function()
         local player = game.Players.LocalPlayer
-local name = player.Name
+        local name = player.Name
+        local target = workspace:WaitForChild("Debree")
+            :WaitForChild("clash_folder")
+            :WaitForChild(name .. "vsEnmu")
+            :WaitForChild(name)
 
-local target = workspace:WaitForChild("Debree")
-    :WaitForChild("clash_folder")
-    :WaitForChild(name .. "vsEnmu")
-    :WaitForChild(name)
+        local args = {
+            [1] = "Change_Value",
+            [2] = target,
+            [3] = 100
+        }
 
-local args = {
-    [1] = "Change_Value", -- or whatever your FireServer expects (you said this works)
-    [2] = target,
-    [3] = 100
-}
-
-game:GetService("ReplicatedStorage")
-    :WaitForChild("Remotes")
-    :WaitForChild("To_Server")
-    :WaitForChild("Handle_Initiate_S")
-    :FireServer(unpack(args))
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("Remotes")
+            :WaitForChild("To_Server")
+            :WaitForChild("Handle_Initiate_S")
+            :FireServer(unpack(args))
+    end  -- ← CIERRA LA FUNCIÓN AQUÍ
 })
+
 -- BUFFS
 
 local skillMod = require(game:GetService("ReplicatedStorage").Modules.Server.Skills_Modules_Handler).Skills
